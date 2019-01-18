@@ -18,9 +18,9 @@ exports.getIndex = (req,res,next)=>{
     Product.fetchAll(products => {
         res.render('shop/index',
         {
-            prods: products,
-            docTitle: 'shop',
-            path: '/'           
+            prods:products,
+            docTitle:'shop',
+            path:'/'           
         });
     });
 };
