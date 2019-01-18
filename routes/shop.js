@@ -12,6 +12,8 @@ routeShop.get('/products',shopController.getProducts);
 
 routeShop.get('/cart',shopController.getCart);
 
+routeShop.get('/orders',shopController.getOrder);
+
 routeShop.get('/checkout',shopController.getCheckout);
 
 module.exports = routeShop;
