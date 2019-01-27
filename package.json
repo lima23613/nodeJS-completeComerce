@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "complete nodejs Guide",
   "main": "app.js",
+  "babel": {
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node app.js"
@@ -12,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "nodemon": "^1.18.9"
   },
   "dependencies": {
