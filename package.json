@@ -5,12 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon --exec babel-node app.js"
   },
   "author": "Praxiteles Lima",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "nodemon": "^1.18.9"
   },
   "dependencies": {
     "ejs": "^2.6.1",
