@@ -13,6 +13,8 @@ router.get('/admin/add-product',adminController.getAddproduct);
 
 router.get('/admin/products',adminController.getProducts);
 // -> /admin/product
+router.post('/admin/delete-product/:productId',adminController.postDeleteproduct);
+
 router.post('/admin/add-product',adminController.postAddproduct);
 
 router.get('/admin/edit-product/:productId',adminController.getEditproduct);
