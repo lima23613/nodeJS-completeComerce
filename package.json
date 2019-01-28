@@ -3,27 +3,19 @@
   "version": "1.0.0",
   "description": "complete nodejs Guide",
   "main": "app.js",
-  "babel": {
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Praxiteles Lima",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/node": "^7.2.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "nodemon": "^1.18.9"
-  },
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
     "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }
