@@ -2,39 +2,44 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
-    Product.fetchAll(products => {
-        res.render('shop/product-list',
-        {
-            prods: products,
-            docTitle: 'All products',
-            path: '/products',
-            hasProduct: products.length > 0,
-            shopActive: true,
-            productCSS: true
-        });
-    });
+    Product.fetchAll()
+        .then(([rows,dataContentt])=>{
+            
+                res.render('shop/product-list',
+                {
+                    prods: rows,
+                    docTitle: 'All products',
+                    path: '/products'
+                   // hasProduct: rows.length > 0                    
+                });
+            })
+        .catch(err => {console.log(err)});
 };
 
 exports.getProduct = (req,res,next)=>{
     const prodId = req.params.productId;
-    Product.findById(prodId, product=>{
-        res.render('shop/product-detail',{
-            docTitle: product.title,
-            path: '/products',
-            product: product
-        });
-    })   
+    Product.findById(prodId)
+        .then(([rows,dataContent])=>{            
+                res.render('shop/product-detail',{
+                    docTitle: rows.title,
+                    path: '/products',
+                    prods: rows[0]
+                });
+            }
+        )
+        .catch(err => console.log(err));   
 };
 
 exports.getIndex = (req,res,next)=>{
-    Product.fetchAll(products => {
-        res.render('shop/index',
-        {
-            prods:products,
-            docTitle:'shop',
-            path:'/'           
-        });
-    });
+    Product.fetchAll()
+        .then(([rows,dataContentt])=>{
+            res.render('shop/index',{
+                prods: rows,
+                docTitle:'shop',
+                path:'/'           
+             });
+        })
+        .catch(err=>{ console.log(err);});    
 };
 
 exports.getCart = (req,res,next)=>{

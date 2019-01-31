@@ -1,13 +1,11 @@
 const path = require('path');
-const express = require('express');
- 
+const express = require('express'); 
 //not need for pug
 /* const expressHbrs = require('express-handlebars'); */
-
 const bodyParser = require('body-parser');
-
 const app = express();
 
+const db = require('./util/database');
 //we don't need this for pug 
 
 /* app.engine('hbs',expressHbrs({layoutsDir:'views/layouts/',
@@ -19,11 +17,9 @@ app.set('view engine','ejs');
 //app.set('view engine','pug');
 app.set('views','views');
 
-
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const errorConttroller = require('./controllers/error');
-
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname,'public')));
