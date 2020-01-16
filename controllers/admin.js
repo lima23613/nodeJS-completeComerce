@@ -16,10 +16,16 @@ exports.postAddproduct = (req,res,next) =>{
     const price = req.body.price;
     const description = req.body.description;
 
-    const product = new Product(null,title,imageUrl,price,description);
+    Product.create({
+        title:title,
+        price: price,
+        imageUrl:imageUrl,
+        description:description
+    }).then().catch(err=>{console.log(err)});
+   /*  const product = new Product(null,title,imageUrl,price,description);
     product.save().then(()=>{
         res.redirect('/');
-    }).catch(err=>console.log(err));          
+    }).catch(err=>console.log(err));  */         
 };
 
 exports.getEditproduct = (req,res,next) =>{
