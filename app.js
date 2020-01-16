@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const db = require('./util/database');
+const sequelize = require('./util/database');
 //we don't need this for pug 
 
 /* app.engine('hbs',expressHbrs({layoutsDir:'views/layouts/',
@@ -25,7 +25,7 @@ const errorConttroller = require('./controllers/error');
 .then(result =>{console.log(result[0]);
 })
 .catch(err=>{console.log(err);
-}); */
+});   */
 
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname,'public')));
@@ -36,6 +36,12 @@ app.use(shopRoutes);
 app.use(errorConttroller.notFound);
 
 const port = 3000;
-app.listen(port ,()=> {
-    console.log('...Server is running on port $'+port+' !');
-}); 
+sequelize.sync()
+.then(result=>{
+    //console.log(result);    
+    app.listen(port ,()=> {
+        console.log('...Server is running on port $'+port+' !');
+    }); 
+})
+.catch(err=>{console.log(err);});
+
