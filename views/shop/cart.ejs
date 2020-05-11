@@ -7,9 +7,9 @@
 <%- include('../includes/navigation.ejs') %>
         <main>
                 <% if(products.length > 0) { %>
-                        <ul>
+                        <ul class = "cart__item-list">
                                 <% products.forEach(p=>{ %>
-                                        <li class="cart_item">
+                                        <li class="cart__item">
                                                 <h1><%= p.title %></h1>
                                                 <h2>Quantity : <%=p.cartItem.quantity%></h2>                                                
                                                 <form action="/cart-delete-item"  method="POST">
