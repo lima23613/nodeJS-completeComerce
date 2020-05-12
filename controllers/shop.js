@@ -1,5 +1,5 @@
 const Product = require('../models/product');
-const Cart = require('../models/cart');
+const Order = require('../models/Order');
 //const CartItem = require('../models/cart-item')
 
 exports.getProducts = (req, res, next) => {
@@ -141,19 +141,47 @@ exports.postCartDeleteProduct = (req,res,next)=>{
     })
     .catch(err => console.log(err))        
 }
+exports.postOrder = (req,res,next)=>{
+    let fetchedCart;
+    req.user.getCart()
+    .then(cart=>{
+        fetchedCart = cart;
+        return cart.getProducts();
+    })
+    .then(products => {
+        return req.user.createOrder()
+        .then(order => {
+            return order.addProducts(products.map(product=>{
+                product.orderItem = {quantity : product.cartItem.quantity}
+                return product;
+            }));
+        })
+        .catch(err => console.log(err))        
+    })
+    .then(result => {
+        return fetchedCart.setProducts(null);        
+    })
+    .then(result =>{
+        res.redirect('/orders')
+    })
+    .catch(err => console.log(err))
+}
 
 
 exports.getOrder = (req,res,next) => {
-    res.render('shop/orders',{
-        docTitle:'Order',
-        path:'/orders'
-    });
+    req.user.getOrders({include: ['products']})
+    .then(orders=>{
+        res.render('shop/orders',{
+            docTitle: 'Your Orders',
+            path:'/orders',
+            orders: orders
+        });
+    })
+    .catch(err => console.log(err))  
 }
 
+
 exports.getCheckout = (req,res,next)=>{
-    res.render('shop/checkout',{
-        docTitle: 'checkout',
-        path:'/checkout'
-    });
+      
 }
 
