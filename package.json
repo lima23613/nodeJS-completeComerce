@@ -16,7 +16,7 @@
     "mangodb": "^1.0.0",
     "mysql2": "^1.7.0",
     "pug": "^2.0.3",
-    "sequelize": "^4.44.3"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
