@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "mangodb": "^1.0.0",
     "mysql2": "^1.7.0",
